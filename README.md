@@ -32,7 +32,26 @@ BLACKMANE est un outil professionnel destiné aux architectes cybersécurité et
 - Node.js 18+
 - npm ou yarn
 
-### Backend
+### Installation Rapide sur macOS M1/M2/M3 (Recommandé)
+
+BLACKMANE est 100% compatible avec Apple Silicon. Installation automatique :
+
+```bash
+# Installation automatique complète
+./scripts/setup-macos.sh
+```
+
+Ce script va :
+- Vérifier Python et Node.js (et les installer via Homebrew si nécessaire)
+- Créer l'environnement virtuel Python (ARM64 natif)
+- Installer toutes les dépendances backend et frontend
+- Optimiser pour Apple Silicon
+
+**Documentation complète** : Voir [docs/MACOS_M1.md](docs/MACOS_M1.md)
+
+### Installation Manuelle (Linux / Windows / macOS manuel)
+
+#### Backend
 
 ```bash
 cd backend
@@ -41,7 +60,7 @@ source venv/bin/activate  # Windows: venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-### Frontend
+#### Frontend
 
 ```bash
 cd frontend
@@ -50,24 +69,37 @@ npm install
 
 ## Lancement
 
-### Mode Développement
+### Démarrage Rapide sur macOS (Recommandé)
 
-Terminal 1 (Backend) :
+```bash
+# Lancement automatique backend + frontend
+./scripts/start-macos.sh
+```
+
+Le script va :
+- Démarrer le backend sur http://127.0.0.1:8000
+- Démarrer le frontend sur http://127.0.0.1:5173
+- Gérer les logs dans ~/Library/Logs/BLACKMANE/
+- Appuyez sur Ctrl+C pour tout arrêter
+
+### Démarrage Manuel
+
+**Terminal 1 (Backend)** :
 ```bash
 cd backend
 source venv/bin/activate
 python main.py
 ```
 
-Terminal 2 (Frontend) :
+**Terminal 2 (Frontend)** :
 ```bash
 cd frontend
 npm run dev
 ```
 
-Application disponible sur : `http://localhost:5173`
+**Application disponible sur** : `http://localhost:5173`
 
-### Mode Production
+### Linux / Démarrage Automatique
 
 ```bash
 ./scripts/start.sh
@@ -81,6 +113,7 @@ Application disponible sur : `http://localhost:5173`
 - [Règles de Sécurité](docs/SECURITY_RULES.md) - Règles d'analyse
 - [Security Design](docs/SECURITY_DESIGN.md) - Sécurité de l'outil
 - [Roadmap](docs/ROADMAP.md) - Plan de développement
+- [macOS M1/M2/M3](docs/MACOS_M1.md) - Guide spécifique Apple Silicon
 
 ## Utilisation
 

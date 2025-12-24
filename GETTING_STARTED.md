@@ -118,7 +118,29 @@ L'architecture complète de BLACKMANE a été conçue et documentée.
 
 ## Démarrage du Développement
 
-### Étape 1 : Installation des Dépendances
+### 🍎 Installation sur macOS M1/M2/M3 (RECOMMANDÉ)
+
+**Installation automatique complète** :
+
+```bash
+./scripts/setup-macos.sh
+```
+
+**Lancement** :
+
+```bash
+./scripts/start-macos.sh
+```
+
+**Guide complet** : [QUICKSTART_MACOS.md](QUICKSTART_MACOS.md)
+
+**Documentation détaillée** : [docs/MACOS_M1.md](docs/MACOS_M1.md)
+
+---
+
+### Installation Générique (Linux / Windows)
+
+#### Étape 1 : Installation des Dépendances
 
 ```bash
 # Backend
@@ -132,7 +154,7 @@ cd ../frontend
 npm install
 ```
 
-### Étape 2 : Premier Lancement (Test)
+#### Étape 2 : Premier Lancement (Test)
 
 ```bash
 # Depuis la racine du projet

@@ -1,3 +1,6 @@
+# BLACKMANE Backend Dependencies
+# Compatible with Python 3.11+ on macOS M1/M2/M3 (ARM64) and x86_64
+
 # FastAPI
 fastapi==0.104.1
 uvicorn[standard]==0.24.0
@@ -26,3 +29,10 @@ httpx==0.25.2
 black==23.11.0
 ruff==0.1.6
 mypy==1.7.1
+
+# Note for macOS M1 users:
+# All dependencies are compatible with Apple Silicon (ARM64)
+# If you encounter any issues during installation, ensure you're using:
+# - Python installed via Homebrew (/opt/homebrew/bin/python3.11)
+# - Latest pip: pip install --upgrade pip
+# - Architecture flags: export ARCHFLAGS="-arch arm64"
