@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { ProjectList } from './pages/ProjectList'
 import { ProjectCreate } from './pages/ProjectCreate'
 import { ProjectDetail } from './pages/ProjectDetail'
+import { ArchitectureView } from './pages/ArchitectureView'
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
             <Route path="/projects" element={<ProjectList />} />
             <Route path="/projects/new" element={<ProjectCreate />} />
             <Route path="/projects/:id" element={<ProjectDetail />} />
+            <Route path="/projects/:projectId/architecture" element={<ArchitectureView />} />
           </Routes>
         </main>
       </div>

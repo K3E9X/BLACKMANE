@@ -115,12 +115,24 @@ export function ProjectDetail() {
         </Card>
 
         <Card>
+          <h2 className="text-xl font-semibold text-dark-text mb-4">
+            Architecture
+          </h2>
+          <p className="text-dark-text-secondary mb-6">
+            Modélisez l'architecture de votre projet en définissant les zones de sécurité, les composants et les flux de données.
+          </p>
+          <Button onClick={() => navigate(`/projects/${id}/architecture`)}>
+            Gérer l'architecture →
+          </Button>
+        </Card>
+
+        <Card>
           <div className="text-center py-12">
             <p className="text-dark-text-secondary mb-4">
-              L'architecture et les analyses seront disponibles prochainement
+              Les analyses de sécurité seront disponibles prochainement
             </p>
             <p className="text-sm text-dark-text-secondary">
-              (Semaine 2-3 du MVP)
+              (Semaine 4-5 du MVP)
             </p>
           </div>
         </Card>
