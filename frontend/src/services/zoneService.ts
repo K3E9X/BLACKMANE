@@ -2,7 +2,7 @@
  * API service for Zone operations
  */
 
-import api from './api';
+import { api } from './api';
 import type { Zone, ZoneCreate, ZoneUpdate, ZoneList } from '../types/zone';
 
 export const zoneService = {
