@@ -8,7 +8,8 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.middleware.trustedhost import TrustedHostMiddleware
 
-from api.v1 import projects, architectures, analyses, recommendations, maturity, roadmap
+# API routers imports (to be implemented during MVP development)
+# from api.v1 import projects, architectures, analyses, recommendations, maturity, roadmap
 from database.connection import init_db
 
 app = FastAPI(
