@@ -1,28 +1,36 @@
 import React from 'react'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { ProjectList } from './pages/ProjectList'
+import { ProjectCreate } from './pages/ProjectCreate'
+import { ProjectDetail } from './pages/ProjectDetail'
 
 function App() {
   return (
-    <div className="min-h-screen bg-dark-bg">
-      <div className="container mx-auto px-4 py-8">
-        <header className="mb-8">
-          <h1 className="text-4xl font-bold text-dark-text mb-2">
-            BLACKMANE
-          </h1>
-          <p className="text-dark-text-secondary">
-            Security by Design Architecture Analysis
-          </p>
+    <BrowserRouter>
+      <div className="min-h-screen bg-dark-bg">
+        {/* Header */}
+        <header className="border-b border-dark-border bg-dark-surface">
+          <div className="container mx-auto px-4 py-4">
+            <h1 className="text-2xl font-bold text-dark-text">
+              BLACKMANE
+            </h1>
+            <p className="text-sm text-dark-text-secondary">
+              Security by Design Architecture Analysis
+            </p>
+          </div>
         </header>
 
-        <main className="bg-dark-surface border border-dark-border rounded-lg p-6">
-          <p className="text-dark-text-secondary">
-            Application en cours de développement...
-          </p>
-          <p className="text-dark-text-secondary mt-2">
-            Consultez la documentation dans /docs pour plus d'informations.
-          </p>
+        {/* Main Content */}
+        <main>
+          <Routes>
+            <Route path="/" element={<Navigate to="/projects" replace />} />
+            <Route path="/projects" element={<ProjectList />} />
+            <Route path="/projects/new" element={<ProjectCreate />} />
+            <Route path="/projects/:id" element={<ProjectDetail />} />
+          </Routes>
         </main>
       </div>
-    </div>
+    </BrowserRouter>
   )
 }
 

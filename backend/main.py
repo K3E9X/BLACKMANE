@@ -8,8 +8,10 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.middleware.trustedhost import TrustedHostMiddleware
 
-# API routers imports (to be implemented during MVP development)
-# from api.v1 import projects, architectures, analyses, recommendations, maturity, roadmap
+# API routers imports
+from api.v1 import projects
+# Other routers (to be implemented during MVP development)
+# from api.v1 import architectures, analyses, recommendations, maturity, roadmap
 from database.connection import init_db
 
 app = FastAPI(
@@ -72,8 +74,10 @@ async def health():
     return {"status": "healthy"}
 
 
-# Include API routers (to be implemented)
-# app.include_router(projects.router, prefix="/api/v1", tags=["projects"])
+# Include API routers
+app.include_router(projects.router, prefix="/api/v1", tags=["Projects"])
+
+# Other routers (to be implemented)
 # app.include_router(architectures.router, prefix="/api/v1", tags=["architectures"])
 # app.include_router(analyses.router, prefix="/api/v1", tags=["analyses"])
 # app.include_router(recommendations.router, prefix="/api/v1", tags=["recommendations"])

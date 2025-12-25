@@ -44,7 +44,10 @@ def get_db():
 def init_db():
     """Initialize database schema"""
     # Import all ORM models here to ensure they're registered
-    # from models.orm import Project, Architecture, Zone, Component, Flow, ...
+    from models.orm import (
+        Project, Architecture, Zone, Component, Flow,
+        Analysis, Finding, Recommendation, MaturityAssessment
+    )
 
     # Create all tables
     Base.metadata.create_all(bind=engine)
