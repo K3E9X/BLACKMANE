@@ -2,7 +2,7 @@
  * API service for Component operations
  */
 
-import api from './api';
+import { api } from './api';
 import type { Component, ComponentCreate, ComponentUpdate, ComponentList } from '../types/component';
 
 export const componentService = {

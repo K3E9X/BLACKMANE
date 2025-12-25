@@ -2,7 +2,7 @@
  * API service for Flow operations
  */
 
-import api from './api';
+import { api } from './api';
 import type { Flow, FlowCreate, FlowUpdate, FlowList } from '../types/flow';
 
 export const flowService = {

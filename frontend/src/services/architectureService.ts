@@ -2,7 +2,7 @@
  * API service for Architecture operations
  */
 
-import api from './api';
+import { api } from './api';
 import type { Architecture, ArchitectureCreate, ArchitectureUpdate } from '../types/architecture';
 
 export const architectureService = {
