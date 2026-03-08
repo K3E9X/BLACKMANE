@@ -44,7 +44,7 @@ export const ArchitectureView: React.FC = () => {
         setArchitecture(archData);
       } catch (err: any) {
         // If no architecture exists, create one
-        if (err.statusCode === 404) {
+        if (err.status === 404) {
           const newArch = await architectureService.create({
             project_id: projectId,
             description: 'Architecture for ' + projectData.name,

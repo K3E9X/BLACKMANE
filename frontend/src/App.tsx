@@ -4,6 +4,7 @@ import { ProjectList } from './pages/ProjectList'
 import { ProjectCreate } from './pages/ProjectCreate'
 import { ProjectDetail } from './pages/ProjectDetail'
 import { ArchitectureView } from './pages/ArchitectureView'
+import { AnalysisView } from './pages/AnalysisView'
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
             <Route path="/projects/new" element={<ProjectCreate />} />
             <Route path="/projects/:id" element={<ProjectDetail />} />
             <Route path="/projects/:projectId/architecture" element={<ArchitectureView />} />
+            <Route path="/projects/:projectId/analysis" element={<AnalysisView />} />
           </Routes>
         </main>
       </div>

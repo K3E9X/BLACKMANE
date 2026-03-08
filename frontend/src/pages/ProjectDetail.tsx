@@ -127,14 +127,15 @@ export function ProjectDetail() {
         </Card>
 
         <Card>
-          <div className="text-center py-12">
-            <p className="text-dark-text-secondary mb-4">
-              Les analyses de sécurité seront disponibles prochainement
-            </p>
-            <p className="text-sm text-dark-text-secondary">
-              (Semaine 4-5 du MVP)
-            </p>
-          </div>
+          <h2 className="text-xl font-semibold text-dark-text mb-4">
+            Analyse sécurité
+          </h2>
+          <p className="text-dark-text-secondary mb-6">
+            Lance une analyse automatique de l'architecture pour détecter les risques (MFA, chiffrement, flux non sécurisés).
+          </p>
+          <Button onClick={() => navigate(`/projects/${id}/analysis`)}>
+            Ouvrir l'analyse →
+          </Button>
         </Card>
       </div>
     </div>
