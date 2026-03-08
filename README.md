@@ -140,6 +140,30 @@ Exemple d'accès (ingress nginx) :
 - Ajoute `blackmane.local` dans `/etc/hosts` vers ton ingress controller.
 
 
+### Résolution rapide des conflits PR #11
+
+Si GitHub indique des conflits sur :
+- `README.md`
+- `deploy/k8s/backend.yaml`
+- `deploy/k8s/frontend.yaml`
+- `deploy/k8s/ingress.yaml`
+- `deploy/k8s/kustomization.yaml`
+
+Utilise le script fourni :
+
+```bash
+./scripts/resolve-pr11-conflicts.sh
+```
+
+Puis finalise :
+
+```bash
+git commit -m "Resolve PR #11 conflicts"
+git push
+```
+
+> Le script conserve la version de la branche courante (`--ours`) pour les fichiers de déploiement prod-ready, puis les stage automatiquement.
+
 ### Déploiement Production-Ready (GHCR + Kubernetes + TLS + CI/CD)
 
 Cette version inclut :
