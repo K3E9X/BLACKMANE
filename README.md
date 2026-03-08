@@ -105,6 +105,87 @@ npm run dev
 ./scripts/start.sh
 ```
 
+### Déploiement Docker Compose
+
+```bash
+# Build et run
+docker compose up --build
+```
+
+Services :
+- Frontend : `http://localhost:5173`
+- Backend API : `http://localhost:8000`
+
+Arrêt :
+```bash
+docker compose down
+```
+
+### Déploiement Kubernetes
+
+Les manifests sont dans `deploy/k8s/`.
+
+```bash
+# 1) Build des images localement
+# (adapte selon ton registry)
+docker build -f backend/Dockerfile -t blackmane-backend:latest .
+docker build -f frontend/Dockerfile -t blackmane-frontend:latest .
+
+# 2) Apply
+kubectl apply -k deploy/k8s
+```
+
+Exemple d'accès (ingress nginx) :
+- Host: `blackmane.local`
+- Ajoute `blackmane.local` dans `/etc/hosts` vers ton ingress controller.
+
+
+### Déploiement Production-Ready (GHCR + Kubernetes + TLS + CI/CD)
+
+Cette version inclut :
+- Pipeline GitHub Actions CI/CD : `.github/workflows/ci-cd.yml`
+- Publication d'images sur GHCR (`blackmane-backend`, `blackmane-frontend`)
+- Déploiement Kubernetes automatisé (`kubectl apply -k deploy/k8s`)
+- Ingress TLS (secret `blackmane-tls`, annotation cert-manager)
+- Variables et secrets Kubernetes (`ConfigMap` + `Secret`)
+
+#### 1) Préparer GitHub Secrets
+
+Ajoute ces secrets dans le repository GitHub :
+- `KUBE_CONFIG_DATA` : kubeconfig encodé en base64
+- `GHCR_PULL_TOKEN` : token lecture package GHCR pour le cluster
+
+Exemple pour générer `KUBE_CONFIG_DATA` :
+```bash
+base64 -w 0 ~/.kube/config
+```
+
+#### 2) Adapter les images Kubernetes
+
+Par défaut, les manifests utilisent des placeholders :
+- `ghcr.io/your-org/blackmane-backend:latest`
+- `ghcr.io/your-org/blackmane-frontend:latest`
+
+Le workflow les remplace automatiquement par un tag SHA lors du job `deploy`.
+
+#### 3) Configurer TLS
+
+L'Ingress est prêt pour cert-manager :
+- annotation `cert-manager.io/cluster-issuer: letsencrypt-prod`
+- secret TLS cible : `blackmane-tls`
+
+Assure-toi d'avoir :
+- ingress-nginx installé
+- cert-manager installé
+- un `ClusterIssuer` nommé `letsencrypt-prod`
+
+#### 4) Variables / secrets applicatifs
+
+- `deploy/k8s/configmap-app.yaml` : variables non sensibles
+- `deploy/k8s/secret-app.yaml` : secrets applicatifs (à surcharger en environnement réel)
+
+⚠️ Change impérativement `SECRET_KEY` avant la mise en production.
+
 ## Documentation
 
 - [Architecture](docs/ARCHITECTURE.md) - Architecture logicielle détaillée

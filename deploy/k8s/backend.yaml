@@ -1,0 +1,75 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+  namespace: blackmane
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      imagePullSecrets:
+        - name: registry-credentials
+      containers:
+        - name: backend
+          image: ghcr.io/your-org/blackmane-backend:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8000
+          env:
+            - name: DATABASE_URL
+              value: sqlite:////app/data/blackmane.db
+            - name: SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: blackmane-app-secrets
+                  key: SECRET_KEY
+            - name: APP_ENV
+              valueFrom:
+                configMapKeyRef:
+                  name: blackmane-app-config
+                  key: APP_ENV
+          volumeMounts:
+            - name: backend-data
+              mountPath: /app/data
+          resources:
+            requests:
+              cpu: "200m"
+              memory: "256Mi"
+            limits:
+              cpu: "1000m"
+              memory: "1Gi"
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 10
+            periodSeconds: 20
+      volumes:
+        - name: backend-data
+          persistentVolumeClaim:
+            claimName: blackmane-backend-data
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend
+  namespace: blackmane
+spec:
+  selector:
+    app: backend
+  ports:
+    - port: 8000
+      targetPort: 8000
+      protocol: TCP

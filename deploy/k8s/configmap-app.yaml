@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: blackmane-app-config
+  namespace: blackmane
+data:
+  APP_ENV: production
+  ALLOWED_HOSTS: blackmane.local
