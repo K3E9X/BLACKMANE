@@ -105,6 +105,40 @@ npm run dev
 ./scripts/start.sh
 ```
 
+### Déploiement Docker Compose
+
+```bash
+# Build et run
+docker compose up --build
+```
+
+Services :
+- Frontend : `http://localhost:5173`
+- Backend API : `http://localhost:8000`
+
+Arrêt :
+```bash
+docker compose down
+```
+
+### Déploiement Kubernetes
+
+Les manifests sont dans `deploy/k8s/`.
+
+```bash
+# 1) Build des images localement
+# (adapte selon ton registry)
+docker build -f backend/Dockerfile -t blackmane-backend:latest .
+docker build -f frontend/Dockerfile -t blackmane-frontend:latest .
+
+# 2) Apply
+kubectl apply -k deploy/k8s
+```
+
+Exemple d'accès (ingress nginx) :
+- Host: `blackmane.local`
+- Ajoute `blackmane.local` dans `/etc/hosts` vers ton ingress controller.
+
 ## Documentation
 
 - [Architecture](docs/ARCHITECTURE.md) - Architecture logicielle détaillée
