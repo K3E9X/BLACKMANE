@@ -9,7 +9,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.middleware.trustedhost import TrustedHostMiddleware
 
 # API routers imports
-from api.v1 import projects, architectures, zones, components, flows
+from api.v1 import projects, architectures, zones, components, flows, analyses
 # Other routers (to be implemented during MVP development)
 # from api.v1 import analyses, recommendations, maturity, roadmap
 from database.connection import init_db
@@ -82,7 +82,7 @@ app.include_router(components.router, prefix="/api/v1", tags=["Components"])
 app.include_router(flows.router, prefix="/api/v1", tags=["Flows"])
 
 # Other routers (to be implemented)
-# app.include_router(analyses.router, prefix="/api/v1", tags=["analyses"])
+app.include_router(analyses.router, prefix="/api/v1", tags=["Analyses"])
 # app.include_router(recommendations.router, prefix="/api/v1", tags=["recommendations"])
 # app.include_router(maturity.router, prefix="/api/v1", tags=["maturity"])
 # app.include_router(roadmap.router, prefix="/api/v1", tags=["roadmap"])
